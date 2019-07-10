@@ -26,9 +26,9 @@ namespace DocsByReflection
         /// <param name="throwError">If should throw error when documentation is not found. Default is true.</param>
         /// <returns>The XML fragment describing the method</returns>
         [SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode")]
-        public static XmlElement GetXmlFromMember(MethodBase method, bool throwError = true)
+        public static XmlElement GetXmlFromMember(MethodBase method, bool throwError = true,string xmlPath=null)
         {
-            return DocsMethodService.GetXmlFromMember(method, throwError);
+            return DocsMethodService.GetXmlFromMember(method, throwError, xmlPath);
         }
 
         /// <summary>
@@ -113,9 +113,9 @@ namespace DocsByReflection
         /// <remarks>This version uses a cache to preserve the assemblies, so that 
         /// the XML file is not loaded and parsed on every single lookup</remarks>
         [SuppressMessage("Microsoft.Usage", "CA2200:RethrowToPreserveStackDetails"), SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode")]
-        public static XmlDocument GetXmlFromAssembly(Assembly assembly, bool throwError = true)
+        public static XmlDocument GetXmlFromAssembly(Assembly assembly, bool throwError = true,string xmlPath=null)
         {
-            return DocsAssemblyService.GetXmlFromAssembly(assembly, throwError);
+            return DocsAssemblyService.GetXmlFromAssembly(assembly, throwError, xmlPath);
         }
         #endregion
     }

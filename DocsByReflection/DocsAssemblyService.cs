@@ -35,7 +35,7 @@ namespace DocsByReflection
         /// <remarks>This version uses a cache to preserve the assemblies, so that 
         /// the XML file is not loaded and parsed on every single lookup</remarks>
         [SuppressMessage("Microsoft.Usage", "CA2200:RethrowToPreserveStackDetails"), SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode")]
-        public static XmlDocument GetXmlFromAssembly(Assembly assembly, bool throwError = true)
+        public static XmlDocument GetXmlFromAssembly(Assembly assembly, bool throwError = true,string xmlPath=null)
         {
             if (s_failCache.ContainsKey(assembly))
             {
@@ -52,7 +52,7 @@ namespace DocsByReflection
                 if (!s_cache.ContainsKey(assembly))
                 {
                     // load the docuemnt into the cache
-                    s_cache[assembly] = GetXmlFromAssemblyNonCached(assembly);
+                    s_cache[assembly] = GetXmlFromAssemblyNonCached(assembly, xmlPath);
                 }
 
                 return s_cache[assembly];
@@ -75,9 +75,9 @@ namespace DocsByReflection
         /// </summary>
         /// <param name="assembly">The assembly to find the XML document for</param>
         /// <returns>The XML document</returns>
-        private static XmlDocument GetXmlFromAssemblyNonCached(Assembly assembly)
+        private static XmlDocument GetXmlFromAssemblyNonCached(Assembly assembly,string xmlPath=null)
         {
-            string filePath = PathHelper.GetAssemblyDocFileNameFromCodeBase(assembly.CodeBase);
+            string filePath = PathHelper.GetAssemblyDocFileNameFromCodeBase(assembly.CodeBase, xmlPath);
 
             try
             {

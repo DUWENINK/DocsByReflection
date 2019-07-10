@@ -14,8 +14,12 @@ namespace DocsByReflection
 		/// </summary>
 		/// <returns>The assembly document file name from code base.</returns>
 		/// <param name="assemblyCodeBase">Assemby code base.</param>
-		public static string GetAssemblyDocFileNameFromCodeBase(string assemblyCodeBase)
+		public static string GetAssemblyDocFileNameFromCodeBase(string assemblyCodeBase ,string xmlPath=null)
 		{
+            if (xmlPath != null)
+            {
+                return xmlPath;
+            }
 			if (string.IsNullOrWhiteSpace (assemblyCodeBase)) {
 				throw new ArgumentNullException ("assemblyCodeBase");
 			}

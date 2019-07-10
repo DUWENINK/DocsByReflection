@@ -62,7 +62,7 @@ namespace DocsByReflection
         /// <param name="name">Where relevant, the full name qualifier for the element</param>
         /// <param name="throwError">If should throw error when documentation is not found. Default is true.</param>
         /// <returns>The member that has a name that describes the specified reflection element</returns>
-        public static XmlElement GetXmlFromName(Type type, char prefix, string name, bool throwError)
+        public static XmlElement GetXmlFromName(Type type, char prefix, string name, bool throwError, string xmlPath=null)
         {
             string fullName = GetTypeFullNameForXmlDoc(type);
 
@@ -75,7 +75,7 @@ namespace DocsByReflection
                 fullName = String.Format(CultureInfo.InvariantCulture, "{0}:{1}.{2}", prefix, fullName, name);
             }
 
-            XmlDocument xmlDocument = DocsService.GetXmlFromAssembly(type.Assembly, throwError);
+            XmlDocument xmlDocument = DocsService.GetXmlFromAssembly(type.Assembly, throwError, xmlPath);
             XmlElement matchedElement = null;
 
             if (xmlDocument != null)
