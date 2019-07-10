@@ -33,6 +33,10 @@ var methodDoc = DocsService.GetXmlFromMember(methodInfo);
 var assemblyDoc = DocsService.GetXmlFromAssembly(typeof(Stub).Assembly);
 
 ```
+##更新##
+var methodDoc = DocsService.GetXmlFromMember(methodInfo,false,xmlPpath);
+支持不加载默认指令集的path
+
 
 ### ThrowError parameter
 *All of the above methods have a last parameter called throwError. The default parameter's value is true, when value is true any documentation not found will throw an error, when value is false the method will return a null value.*
